@@ -41,6 +41,7 @@ $(function () {
     $('#form_login').on('submit', function (e) {
         e.preventDefault()
         // var data = $(this).serialize()
+        // console.log(data);
         $.ajax({
             url: '/api/login',
             method: 'post',
@@ -49,7 +50,8 @@ $(function () {
                 // console.log(res);
                 if (res.status !== 0) return layer.msg(res.message);
                 layer.msg('登录成功！');
-                console.log(res.token);
+                localStorage.setItem('token', res.token)
+                // console.log(res.token);
                 // 跳转后台
                 location.href = 'index.html'
             }
